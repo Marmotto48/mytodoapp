@@ -13,9 +13,11 @@ pipeline {
                 }
         }
         stage('Test') {
-            steps {sh "curl http://localhost:4200"
-                echo 'Testing..'
-            }
+            steps {script{
+                withEnv(['BUILD_ID=dontkill']) {
+                     sh "ng serve &"
+                }
+            }}
         }
        
         }
